@@ -3,8 +3,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const password = require(__dirname+"/clusterpassword");
 const _ = require("lodash");
-// const date = require(__dirname + "/date.js");
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
+mongoose.connect(`mongodb+srv://Armaan:${password.getClusterPassword()}@cluster0.5ftsjvc.mongodb.net/todolistDB`, {useNewUrlParser: true});
 
 const itemSchema = mongoose.Schema({
   name: String
@@ -43,6 +43,7 @@ app.get("/", function(req, res) {
         if(err) console.log(err);
         else console.log("Successfully saved");
       })
+      res.redirect("/");
     }
     if(err) console.log(err)
     else res.render("list", {listTitle: "Today", newListItems: foundItems});
