@@ -1,5 +1,5 @@
-/node_modules
+clusterpassword.js
+node_modules
 npm-debug.log
 .DS_Store
-clusterpassword.js
 /*.env
