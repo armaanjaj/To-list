@@ -1,3 +1,3 @@
 module.exports.getClusterPassword = ()=>{
-    return "Test1233";
+    return "NewTest0122";
 }
